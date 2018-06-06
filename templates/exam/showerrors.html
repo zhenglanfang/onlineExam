@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+{% load static from staticfiles %}
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link href="{% static 'css/exam/do/main.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/exam/do/iconfont.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/exam/do/test.css' %}" rel="stylesheet" type="text/css" />
+    <style>
+        .hasBeenAnswer {
+            background: #5d9cec;
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <!--nr start-->
+    <div class="test_main">
+        <div class="nr_left">
+            <div class="test">
+                <div class="test_content">
+                    <div class="test_content_title">
+                        <h2> {{ title }}</h2>
+                    </div>
+                </div>
+                <div class="test_content_nr">
+                    <ul>
+                        {% include 'exam/module/showerrors.html' %}
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--nr end-->
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+

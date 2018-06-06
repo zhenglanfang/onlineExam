@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/public/basic.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/exam/site.css' %}">
+    {% block extrastyle %}{% endblock %}
+
+</head>
+<body>
+
+<!--头部 Begin-->
+<div class="top">
+    <div class="topbar  m_w">
+
+        <div class="a_user f_r">
+            <img src="{% static 'images/exam/avatar.png' %}" error-image="/content/images/100.png" alt="13849182150">
+            <a href="" title="会员中心">13849182150</a>
+            <a class="tiku-exit" href="javascript:void(null);">退出</a>
+        </div>
+
+        <div class="logo f_l">
+            <a href=""><img alt="在线题库" src="{% static 'images/exam/logo.png' %}"></a>
+        </div>
+
+        <div class="menu f_l">
+            <ul class="nav">
+                <li {% block index %}{% endblock %}><a href="{% url 'exam:index' %}" title="点题库首页">首页</a></li>
+                <li {% block tiku %}{% endblock %}><a href="#select" title="题库">题库</a></li>
+                <li><a href="" target="_bank" title="考拉网">考拉网</a></li>
+                <li><a href="" target="_bank" title="软件下载">软件下载</a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--头部 End-->
+
+{% block body %}{% endblock %}
+
+<!--底部 Begin-->
+<div class="foot">
+    <div class="footer">
+        <div class="footer_l">
+            <p>
+                <a href="">关于我们</a><span class="s_w">|</span>
+                <a href="">合作加盟</a>
+                <span class="s_w">|</span>
+                <a href="">付款方式</a>|
+                <a href="">网站声明</a><span class="s_w">|</span>
+                <a href="">网站地图</a><span class="s_w">|</span>
+                <a href="">帮助中心</a>
+            </p>
+            <p>Copyright© 2015-2017   diantiku.cn   All Rights Reserved   点题库   版权所有</p>
+            <p>豫ICP备16006268号</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<!--底部 End-->
+
+</body>
+</html>

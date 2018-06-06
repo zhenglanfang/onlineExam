@@ -1,0 +1,118 @@
+﻿<!DOCTYPE HTML>
+{% load static from staticfiles %}
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title }}</title>
+    <link href="{% static 'css/exam/do/main.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/exam/do/iconfont.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/exam/do/test.css' %}" rel="stylesheet" type="text/css" />
+    <style>
+        .hasBeenAnswer {
+            background: #5d9cec;
+            color:#fff;
+        }
+        .err{
+            text-align: center;
+            margin-top: 30px;
+            line-height: 40px;
+            font-size: 18px;
+        }
+        .err p{
+            color: red;
+        }
+        .err a{
+            text-decoration: underline;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+{% if count == 0 %}
+    <div class="err">
+        <p>选择的练习模式没有习题,请重新选择!</p>
+        <a href="{% url 'exam:chapter_do' chapter %}" >返回上一级</a>
+    </div>
+{% else %}
+    <div class="main">
+        <!--nr start-->
+        <div class="test_main">
+            <div class="nr_left">
+                <div class="test">
+                    <form action="{% url 'exam:show_result' %}" method="post">
+                        {% csrf_token %}
+                        <div class="test_title">
+                            <p class="test_time">
+                                <i class="icon iconfont">&#xe6fb;</i><span>已用时:</span><b class="alt-1">0:0:0</b>
+                            </p>
+                            <input type="submit" name="test_jiaojuan" value="交卷" id="submit">
+                        </div>
+                        <div class="test_content">
+                            <div class="test_content_title">
+                                <input type="text" value="{{ chapter }}" hidden name="chapter">
+                                <input type="text" value="{{ ques_list }}" hidden name="ques_ids">
+                                <input type="text" value="" hidden name="used_time" id="used_time">
+                                <h2 chapter="{{ chapter }}">{{ title }}</h2>
+                                <p>
+                                    {{ type }}
+                                    {#                                <span>共</span><i class="content_lit">{{ count }}</i><span>题，</span>#}
+                                    {#                                <span>合计</span><i class="content_fs">60</i><span>分</span>#}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="test_content_nr">
+                            <ul>
+                                {% include 'exam/question_type.html' %}
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="nr_right">
+                <div class="nr_rt_main">
+                    <div class="rt_nr1">
+                        <div class="rt_nr1_title">
+                            <h1>
+                                <i class="icon iconfont">&#xe692;</i>答题卡
+                            </h1>
+                            <p class="test_time">
+                                <i class="icon iconfont">&#xe6fb;</i><span>已用时:</span><b class="alt-1" id="page-timer-text">0:0:0</b>
+                            </p>
+                        </div>
+                        <div class="rt_content">
+                            <div class="rt_content_tt">
+                                <h2>{{ type }}</h2>
+                                <p>
+                                    <span>共</span><i class="content_lit">{{ count }}</i><span>题</span>
+                                </p>
+                            </div>
+                            <div class="rt_content_nr answerSheet">
+                                <ul>
+                                    {% for item in answer_list %}
+                                        <li><a href="#qu_0_{{ forloop.counter }}">{{ forloop.counter }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--nr end-->
+        <div class="foot"></div>
+    </div>
+    <script src="{% static 'js/public/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/exam/do.js' %}"></script>
+{% endif %}
+
+</body>
+</html>
+
+
+
+
+
+
+
+

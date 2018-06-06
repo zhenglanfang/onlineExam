@@ -1,0 +1,57 @@
+{% extends 'exam/base_exam.html' %}
+{% load static from staticfiles %}
+{% block title %}练习记录{% endblock %}
+{% block record %}class="aon"{% endblock %}
+{% block content %}
+    <div class="error_fr">
+        <div class="error_c1">
+            <h2 class="h2_err">练习记录</h2>
+            <div class="kemu">
+                <div class="ke_sort">
+                    <span class="s_bold f_l">题目类型：</span>
+                    <div class="alist f_l">
+                        <a {% if que_type == '0' %}class="am_on"{% endif %} href="{% url 'exam:record2' 0 0 %}" id="0">全部</a>
+                        <a {% if que_type == '1' %}class="am_on"{% endif %} href="{% url 'exam:record2' 0 1 %}"  title="" id="661">选择题</a>
+                        <a {% if que_type == '2' %}class="am_on"{% endif %} href="{% url 'exam:record2' 0 2 %}"  title="" id="662">判断题</a>
+                        <a {% if que_type == '3' %}class="am_on"{% endif %} href="{% url 'exam:record2' 0 3 %}"  title="" id="663">主观题</a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="ke_sort">
+                    <span class="s_bold f_l">做题模式：</span>
+                    <div class="alist f_l">
+                        {% if model == '0' %}
+                            <a href="{% url 'exam:record2' 0 0 %}" class="am_on" data-mode="1">章节练习</a>
+                            <a href="{% url 'exam:record2' 1 0 %}" >在线考试</a>
+                        {% else %}
+                            <a href="{% url 'exam:record2' 0 0 %}"  data-mode="1">章节练习</a>
+                            <a href="{% url 'exam:record2' 1 0 %}" class="am_on">在线考试</a>
+                        {% endif %}
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="error_c2">
+            <div class="record_cnt">
+                {% for record in records %}
+                    <div class="record">
+                        <div class="record_bd">
+                            <div class="record_l f_l">
+                                <p class="recd_p1">{{ record.switch_date }} {{ record.chapter.ctitle }}</p>
+                                <p class="recd_p2">用时：{{ record.switch_used }} 　 正确数：{{ record.success_count }}&nbsp; 错误数：{{ record.errors_count }}</p>
+                            </div>
+                            <div class="record_2 f_r">
+                                <a href="{% url 'exam:show_record' record.pk%}" target="_blank">查看</a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+
+

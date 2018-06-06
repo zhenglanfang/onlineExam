@@ -1,0 +1,46 @@
+{% extends 'exam/base_exam.html' %}
+{% load static from staticfiles %}
+{% block title %}我的错题{% endblock %}
+{% block error %}class="aon"{% endblock %}
+{% block content %}
+    <div class="error_fr">
+        <div class="error_c1">
+            <h2 class="h2_err">我的错题</h2>
+            <div class="kemu">
+                <div class="ke_sort">
+                    <span class="s_bold f_l">题目类型：</span>
+                    <div class="alist f_l">
+                        <a href="javascript:void(null)" title="全部">全部</a>
+                        <a data="type=1" href="javascript:void(null)" title="选择题">选择题</a>
+                        <a data="type=2" href="javascript:void(null)" title="判断题">判断题</a>
+                        <a data="type=3" href="javascript:void(null)" title="主观题">主观题</a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="error_c2">
+            <div class="errd_div">
+                <h3 class="h3_err">按章节归类</h3>
+            </div>
+            <div class="chapter-tree" style="padding-bottom:60px;">
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <script type="text/javascript" src="{% static 'js/public/jquery-1.12.4.min.js' %}"></script>
+    <script type="text/javascript">
+        $('.alist a').on('click',function () {
+            $(this).addClass('am_on').siblings().removeClass('am_on');
+            $.ajax({
+                url:"{% url 'exam:error_type' %}",
+                type:'POST',
+                data:$(this).attr('data'),
+                success:function (data) {
+                    $('.chapter-tree').html(data)
+                }
+            })
+        });
+        $('.alist a:first').click();
+    </script>
+{% endblock %}

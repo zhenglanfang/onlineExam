@@ -1,0 +1,61 @@
+{% if type == '选择题' %}
+    {% for answer in  answers %}
+        <li>
+            <div class="test_content_nr_tt {% if answer.score == 0 %}err{% endif %}">
+                <i>{{ forloop.counter }}</i><span>(1分)</span><font>{{ answer.que.que_content }}</font><b class="icon iconfont">&#xe881;</b>
+            </div>
+            <div class="test_content_nr_main">
+                <ul>
+                    <li class="option">
+                        <label>
+                            A.<p class="ue" style="display: inline;">{{ answer.que.que_A }}</p>
+                        </label>
+                    </li>
+                    <li class="option">
+                        <label>
+                            B.<p class="ue" style="display: inline;">{{ answer.que.que_B }}</p>
+                        </label>
+                    </li>
+                    <li class="option">
+                        <label>
+                            C.<p class="ue" style="display: inline;">{{ answer.que.que_C }}</p>
+                        </label>
+                    </li>
+                    <li class="option">
+                        <label>
+                            D.<p class="ue" style="display: inline;">{{ answer.que.que_D }}</p>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="test_content_nr_main">正确答案：<b>{{ answer.que.que_answer }}</b><br>你的答案：{{ answer.stu_answer }}</div>
+        </li>
+    {% endfor %}
+{% elif type == '判断题' %}
+    {% for answer in  answers %}
+        <li>
+            <div class="test_content_nr_tt {% if answer.score == 0 %}err{% endif %}">
+                <i>{{ forloop.counter }}</i><span>(1分)</span><font>{{ answer.que.que_content }}</font><b class="icon iconfont">&#xe881;</b>
+            </div>
+            <div class="test_content_nr_main">正确答案：<b>{{ answer.que.switch_answer }}</b><br>你的答案：{{ answer.switch_answer }}</div>
+        </li>
+    {% endfor %}
+{% else %}
+    {% for answer in  answers %}
+        <li>
+            <div class="test_content_nr_tt">
+                <i>{{ forloop.counter }}</i><span>(1分)</span><font><pre style="font-family:'Courier New' ">{{ answer.que.que_content }}</pre></font><b class="icon iconfont">&#xe881;</b>
+            </div>
+            <div class="test_content_nr_main">
+                <ul>
+                    <li class="option">
+                        <textarea style="width: 100%;font-size: 18px;" rows="10">
+                            {{ answer.stu_answer }}
+                        </textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="test_content_nr_main">正确答案：<pre style="font-family:'Courier New';color: red">{{ answer.que.que_answer }}</pre></div>
+        </li>
+    {% endfor %}
+{% endif %}

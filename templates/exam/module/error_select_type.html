@@ -1,0 +1,20 @@
+{% if count == 0 %}
+    <div style="display: block;" class="zj_list d_p2">没有查询到相关记录！</div>
+{% else %}
+    {% for item in context %}
+        <div data-parentid="678" data-id="974" style="display: block;" class="zj_list d_p2">
+            <div></div>
+            <div class="z_cont f_l">
+                <p class="p_a1">
+                    <a data-parentid="678" data-id="974" href="javascript:void(0)">
+                        <i class="f_l zicon_">&nbsp;</i>{{ item.title  }}</a>
+                    <span>（总共{{ item.sumcount }}题）</span><span class="icon_1">错题：{{ item.errcount }}</span>
+                </p>
+            </div>
+            <div class="f_r lbtn">
+                <a href="{% url 'exam:show_error' %}?errs={{ item.errs }}&title={{ item.title }}">查看</a>&nbsp;&nbsp;
+            </div>
+            <div class="clear"></div>
+        </div>
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,79 @@
+{% extends 'exam/base.html' %}
+{% load static from staticfiles %}
+{% block title %}题库{% endblock %}
+{% block index %}class="li_on"{% endblock %}
+{% block body %}
+    <div class="layout">
+        <div class="m_w">
+            <img src="{% static 'images/exam/banner1.jpg' %}" border="0" alt="" usemap="#Map" id="img_pick">
+        </div>
+    </div>
+    <div class="main_bg">
+        <div class="main">
+            <h2 class="tk_title" id="select">选择学科</h2>
+            <div class="m_content">
+                {% for subject in subjects %}
+                    <dl class="sort_dl">
+                        <dt class="dt_img"><a href="{% url 'exam:chapter' subject.pk %}" title="{{ subject.ctitle }}">
+                            <img alt="{{ subject.ctitle }}" title="{{ subject.ctitle }}" src="{% static 'images/exam/20150720170910697.png' %}"></a>
+                        </dt>
+                        <dd class="dd_tit"><a href="{% url 'exam:chapter' subject.pk %}" title="{{ subject.ctitle }}">{{ subject.ctitle }}</a></dd>
+                        <dd class="dd_detil">
+                            <p></p>
+                        </dd>
+                    </dl>
+                {% endfor %}
+                <dl class="sort_dl">
+                    <dt class="dt_img"><a href="http://tiku.kaola100.com/tiku/3" target="_blank" title="医药卫生"><img alt="医药卫生" title="医药卫生" src="{% static 'images/exam/20150714113357871.png' %}"></a></dt>
+                    <dd class="dd_tit"><a href="http://tiku.kaola100.com/tiku/3" target="_blank" title="医药卫生">医药卫生</a></dd>
+                    <dd class="dd_detil">
+                        <p></p>
+                    </dd>
+                </dl>
+                <dl class="sort_dl">
+                    <dt class="dt_img"><a href="http://tiku.kaola100.com/tiku/4" target="_blank" title="职业资格"><img alt="职业资格" title="职业资格" src="{% static 'images/exam/20150521184649758.png' %}"></a></dt>
+                    <dd class="dd_tit"><a href="http://tiku.kaola100.com/tiku/4" target="_blank" title="职业资格">职业资格</a></dd>
+                    <dd class="dd_detil">
+                        <p></p>
+                    </dd>
+                </dl>
+                <dl class="sort_dl">
+                    <dt class="dt_img"><a href="http://tiku.kaola100.com/tiku/6" target="_blank" title="外语"><img alt="外语" title="外语" src="{% static 'images/exam/20150521184732112.png' %}"></a></dt>
+                    <dd class="dd_tit"><a href="http://tiku.kaola100.com/tiku/6" target="_blank" title="外语">外语</a></dd>
+                    <dd class="dd_detil">
+                        <p></p>
+                    </dd>
+                </dl>
+                <dl class="sort_dl">
+                    <dt class="dt_img"><a href="http://tiku.kaola100.com/tiku/7" target="_blank" title="公务员"><img alt="公务员" title="公务员" src="{% static 'images/exam/20150521184614045.png' %}"></a></dt>
+                    <dd class="dd_tit"><a href="http://tiku.kaola100.com/tiku/7" target="_blank" title="公务员">公务员</a></dd>
+                    <dd class="dd_detil">
+                        <p></p>
+                    </dd>
+                </dl>
+                <dl class="sort_dl">
+                    <dt class="dt_img"><a href="http://tiku.kaola100.com/tiku/1" target="_blank" title="自考类"><img alt="自考类" title="自考类" src="{% static 'images/exam/20150521183838915.png' %}"></a></dt>
+                    <dd class="dd_tit"><a href="http://tiku.kaola100.com/tiku/1" target="_blank" title="自考类">自考类</a></dd>
+                    <dd class="dd_detil">
+                        <p></p>
+                    </dd>
+                </dl>
+                <dl class="sort_dl">
+                    <dt class="dt_img"><a href="http://tiku.kaola100.com/tiku/12" target="_blank" title="成人高考"><img alt="成人高考" title="成人高考" src="{% static 'images/exam/000010101.png' %}"></a></dt>
+                    <dd class="dd_tit"><a href="http://tiku.kaola100.com/tiku/12" target="_blank" title="成人高考">成人高考</a></dd>
+                    <dd class="dd_detil">
+                        <p></p>
+                    </dd>
+                </dl>
+                <dl class="sort_dl">
+                    <dt class="dt_img"><a href="http://tiku.kaola100.com/tiku/" target="_blank"><img alt="更多考试" src="./index_files/more.png"></a></dt>
+                    <dd class="dd_tit"><a href="http://tiku.kaola100.com/tiku/" target="_blank">更多</a></dd>
+                    <dd class="dd_detil">
+                        <p>学历教育领域培训首选品牌组卷模考、押题试卷、真题解析</p>
+                    </dd>
+                </dl>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'exam/base_exam.html' %}
+{% load static from staticfiles %}
+{% block title %}章节考点{% endblock %}
+{% block chapter %}class="aon"{% endblock %}
+{% block content %}
+    <div class="chapter_1">
+        <div class="chapter1_fl">
+            <div class="position">
+                <span class="sp_1">章节总数{{ chapters.count }}</span>|<span class="sp_1">学习人数20162</span>
+            </div>
+            <div class="fl_img f_l">
+                <img src="{% static subject.get_cover %}" alt="{{ subject.ctitle }}">
+            </div>
+            <div class="fl_detil f_l">
+                <h2 class="h2tit">
+                    {{ subject.ctitle }}
+                </h2>
+                <p class="price">价格：<em>¥0.00</em>元</p>
+                <p class="intro">描述：{{ subject.ctitle }}</p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="chapter_2">
+        <div class="kemu">
+            <span class="s_bold f_l">选择章节：</span>
+            <div class="clear"></div>
+        </div>
+        <h2 class="z_icon">章节考点</h2>
+        <!--章节考点 开始标记-->
+        <div id="treelist" style="padding-bottom:60px;">
+            {% for chapter in chapters %}
+                <div data-parentid="0" data-id="" style="" class="zj_list d_p1">
+                    <div class="z_cont f_l">
+                        <p class="p_a1">
+                            <a href="javascript:void(0)">
+                                <i data-parentid="0" data-id="" class="f_l">&nbsp;</i>{{ chapter.ctitle }}
+                            </a>
+                            <span>（总共{{ chapter.questions_set.count }}题）</span>
+                        </p>
+                    </div>
+                    <div class="f_r lbtn">
+                        <a href="{% url 'exam:chapter_do' chapter.pk%}" {% if chapter.questions_set.count == 0 %} onclick="window.alert('当前章节还没有练习题！'); return false;" {% endif %}>开始做题</a>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}

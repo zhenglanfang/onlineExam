@@ -1,0 +1,77 @@
+{% extends 'exam/base.html' %}
+{% load static from staticfiles %}
+{% block title %}练习模式{% endblock %}
+{% block extrastyle %}
+    <script type="text/javascript" src="{% static 'js/public/jquery-1.12.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/exam/select.js' %}"></script>
+{% endblock %}
+{% block tiku %}class="li_on"{% endblock %}
+{% block body %}
+    <div class="main_bg p_t">
+        <div class="chapterbg">
+            <div class="chapter_main">
+                <div class="clear"></div>
+                <div class="chapter_content">
+                    <div class="choose_div">
+                        <div class="choose">
+                            <h1 class="h1tit" title="{{ chapter.ctitle }}" chapter="{{ chapter.pk }}">{{ chapter.ctitle }}<span class="f_60">（练习）</span></h1>
+                            <div class="choose_list">
+                                <ul>
+                                    <li>
+                                        <div class="f_l li_tit  libg"><b>1、</b>练习模式：</div>
+                                        <div class="f_l li_content" id="pmode">
+                                            <a href="javascript:void(null)" data-id="0" data-mode="filter" data-count="{{ notdone }}" class="aon">未做题({{ notdone }})</a>
+                                            <a href="javascript:void(null)" data-id="1" data-mode="filter" data-count="{{ done }}">已做题<em class="c_em1">({{ done }})</em></a>
+                                            <a href="javascript:void(null)" data-id="2" data-mode="filter" data-count="{{ err }}">错误试题<em class="c_em1">({{ err }})</em></a>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </li>
+                                    <li>
+                                        <div class="f_l li_tit"><b>2、</b>试题类型：</div>
+                                        <div class="f_l li_content" id="ptype">
+                                            {% for key,value in que_type %}
+                                                <a {% if forloop.first %}class="aon"{% endif %}href="javascript:void(null)" data-id="{{ key }}" data-mode="typeid">{{ value }}</a>
+                                            {% endfor %}
+                                           {% comment %} <a href="javascript:void(null)" data-id="1" data-mode="typeid" >单项选择题</a>
+                                            <a href="javascript:void(null)" data-id="2" data-mode="typeid">判断题</a>
+                                            <a href="javascript:void(null)" data-id="3" data-mode="typeid">主观题</a>{% endcomment %}
+                                        </div>
+                                        <div class="clear"></div>
+                                    </li>
+                                    <li>
+                                        <div class="f_l li_tit"><b>3、</b>试题难度：</div>
+                                        <div class="f_l li_content" id="pdegree">
+                                            <a href="javascript:void(null)" data-id="0" data-mode="degree" class="aon">全部</a>
+                                            {% for key,value in que_level %}
+                                                <a href="javascript:void(null)" data-id="{{ key }}" data-mode="degree">{{ value }}</a>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="clear"></div>
+                                    </li>
+                                    <li>
+                                        <div class="f_l li_tit"><b>4、</b>试题数量：</div>
+                                        <div class="f_l li_content" id="pnum">
+                                            <a href="javascript:void(null)" data-id="5"  data-mode="quantity" class="aon">5</a>
+                                            <a href="javascript:void(null)" data-id="10" data-mode="quantity">10</a>
+                                            <a href="javascript:void(null)" data-id="15" data-mode="quantity">15</a>
+                                            <a href="javascript:void(null)" data-id="20" data-mode="quantity">20</a>
+                                            <a href="javascript:void(null)" data-id="30" data-mode="quantity">30</a>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </li>
+                                </ul>
+                                <a class="choose_btn" href="javascript:void(null)">开始做题</a>
+                                <div class="prompt">
+                                    <p class="pf1">温馨提示：</p>
+                                    <p class="pf"><strong>1、</strong>未做试题：筛选本章节下未作的试题并且纠错次数小于5次的试题</p>
+                                    <p class="pf"><strong>2、</strong>已做试题：复习本章节下已经做过了的试题，复习时会清除掉上一次练习的答案记录</p>
+                                    <p class="pf"><strong>3、</strong>错误试题：复习本章将下做错了的试题，复习时会清除掉上一次练习的答案记录</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'exam/base.html' %}
+{% load static from staticfiles %}
+{% block tiku %}class="li_on"{% endblock %}
+{% block body %}
+<div class="main_bg p_t">
+    <div class="chapterbg">
+        <div class="chapter_main">
+            <div class="chapter_menu">
+                <div class="chapter_nav">
+                    <a nav-for="chapter" href="{% url 'exam:chapter' request.session.subject_id %}" target="_top" title="章节考点" {% block chapter %}{% endblock %}>章节考点</a>
+                    <a nav-for="paper" href="{% url 'exam:chapter' request.session.subject_id %}" target="_top" title="试卷练习" {% block pater %}{% endblock %}>试卷练习</a>
+                    <a nav-for="error" href="{% url 'exam:error' %}" target="_top" title="错题集锦" {% block error %}{% endblock %}>错题集锦</a>
+                    <a nav-for="record" href="{% url 'exam:record' %}" target="_top" title="练习记录" {% block record %}{% endblock %}>练习记录</a>
+                    <a nav-for="exam" href="{% url 'exam:exam'%}" target="_top" title="我的考试" {% block exam %}{% endblock %}>我的考试</a>
+
+                </div>
+                <div class="chapter1_fr">
+                    <div class="date">
+                        <p class="font_1">距离<span class="f60" title="理论知识">理论知识</span>考试</p>
+                        <p class="font_2">还有<span class="sp_2 sp_bg1">0</span>天</p>
+                    </div>
+                </div>
+                <div class="back">
+                    <a class="qia" href="http://tiku.kaola100.com/tiku/" target="_top">在线考试</a>
+                </div>
+            </div>
+            <div class="chapter_content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

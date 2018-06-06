@@ -1,0 +1,55 @@
+{% for question in questions %}
+    {% if question.que_type == '1' %}
+        <li>
+        <div class="test_content_nr_tt">
+            <i>{{ forloop.counter }}</i><span>(1分)</span><font>{{ question.que_content }}</font><b class="icon iconfont">&#xe881;</b>
+        </div>
+        <div class="test_content_nr_main">
+            <ul>
+                <li class="option">
+                    <label>
+                        A.<p class="ue" style="display: inline;">{{ question.que_A }}</p>
+                    </label>
+                </li>
+                <li class="option">
+                    <label>
+                        B.<p class="ue" style="display: inline;">{{ question.que_B }}</p>
+                    </label>
+                </li>
+                <li class="option">
+                    <label>
+                        C.<p class="ue" style="display: inline;">{{ question.que_C }}</p>
+                    </label>
+                </li>
+                <li class="option">
+                    <label>
+                        D.<p class="ue" style="display: inline;">{{ question.que_D }}</p>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="test_content_nr_main">正确答案：<b>{{question.que_answer }}</b></div>
+    </li>
+    {% elif question.que_type == '2' %}
+        <li>
+        <div class="test_content_nr_tt">
+            <i>{{ forloop.counter }}</i><span>(1分)</span><font>{{ question.que_content }}</font><b class="icon iconfont">&#xe881;</b>
+        </div>
+        <div class="test_content_nr_main">正确答案：<b>{{ question.switch_answer }}</b></div>
+    </li>
+    {% else %}
+         <li>
+        <div class="test_content_nr_tt">
+            <i>{{ forloop.counter }}</i><font><pre style="font-family:'Courier New' ">{{question.que_content }}</pre></font><b class="icon iconfont">&#xe881;</b>
+        </div>
+        <div class="test_content_nr_main">
+            <ul>
+                <li class="option">
+                </li>
+            </ul>
+        </div>
+        <div class="test_content_nr_main">正确答案：<pre style="font-family:'Courier New';color: red">{{ question.que_answer }}</pre></div>
+    </li>
+    {% endif %}
+{% endfor %}
+
